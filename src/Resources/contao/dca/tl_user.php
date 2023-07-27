@@ -22,7 +22,7 @@ $GLOBALS['TL_DCA']['tl_user']['fields'] = [
             'eval' => [
                 'tl_class' => 'w50 m12',
             ],
-            'save_callback' => [static fn ($v) => '1' === $v], // Correctly store boolean types
+            'save_callback' => [static fn ($v) => '1' === $v],
             'sql' => [
                 'type' => Doctrine\DBAL\Types\Types::BOOLEAN,
                 'default' => false,
