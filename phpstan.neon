@@ -1,0 +1,12 @@
+includes:
+    - tools/phpstan/vendor/phpstan/phpstan-symfony/extension.neon
+
+parameters:
+    bootstrapFiles:
+        - %rootDir%/../../../vendor/autoload.php
+
+    checkMissingIterableValueType: false
+    reportUnmatchedIgnoredErrors: false
+    universalObjectCratesClasses:
+
+    ignoreErrors:

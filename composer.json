@@ -1,0 +1,83 @@
+{
+    "name": "oneup/contao-backend-limited-width",
+    "type": "contao-bundle",
+    "description": "Adds an option to limit the width of the backend.",
+    "keywords": [
+        "contao",
+        "backend",
+        "limited",
+        "width",
+        "ux"
+    ],
+    "homepage": "https://1up.io",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David Greminger",
+            "email": "dg@1up.io",
+            "homepage": "https://1up.io",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "contao/core-bundle": "^5.0"
+    },
+    "require-dev": {
+        "bamarni/composer-bin-plugin": "^1.4",
+        "contao/manager-plugin": "^2.0"
+    },
+    "extra": {
+        "bamarni-bin": {
+            "bin-links": false
+        },
+        "contao-manager-plugin": "Oneup\\ContaoBackendLimitedWidthBundle\\ContaoManager\\Plugin"
+    },
+    "autoload": {
+        "psr-4": {
+            "Oneup\\ContaoBackendLimitedWidthBundle\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Oneup\\ContaoBackendLimitedWidthBundle\\Tests\\": "tests"
+        }
+    },
+    "prefer-stable": true,
+    "support": {
+        "email": "hello@1up.io",
+        "issues": "https://github.com/1up-lab/contao-backend-limited-width/issues",
+        "source": "https://github.com/1up-lab/contao-backend-limited-width"
+    },
+    "config": {
+        "allow-plugins": {
+            "bamarni/composer-bin-plugin": true,
+            "contao-components/installer": true,
+            "contao/manager-plugin": true,
+            "php-http/discovery": true
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@composer bin all install --ansi"
+        ],
+        "post-update-cmd": [
+            "@composer bin all update --ansi"
+        ],
+        "cs-fixer": [
+            "@php vendor-bin/php-cs-fixer/vendor/bin/php-cs-fixer fix -vvv --ansi"
+        ],
+        "phpstan": [
+            "@php vendor-bin/phpstan/vendor/bin/phpstan analyze src/ --level max --memory-limit=-1 --ansi"
+        ],
+        "rector": [
+            "@php vendor-bin/rector/vendor/bin/rector process --clear-cache --dry-run"
+        ],
+        "rector-fix": [
+            "@php vendor-bin/rector/vendor/bin/rector --clear-cache process"
+        ],
+        "require-checker": [
+            "@php vendor-bin/require-checker/vendor/bin/composer-require-checker check --config-file=tools/require-checker/config.json composer.json --ansi"
+        ]
+    }
+}
