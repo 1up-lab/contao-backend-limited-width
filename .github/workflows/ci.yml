@@ -1,0 +1,94 @@
+name: CI
+
+on: push
+
+jobs:
+    check-codestyle:
+        name: Check codestyle
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v3
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: 8.1
+                    extensions: bcmath, dom, fileinfo, filter, gd, hash, intl, json, mbstring, mysqli, pcre, pdo_mysql, zip, zlib
+                    coverage: none
+
+                env:
+                    COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            -   name: Install PHP dependencies
+                run: composer install --no-interaction --no-progress
+
+            -   name: Check PHP codestyle
+                run: |
+                    vendor-bin/php-cs-fixer/vendor/bin/php-cs-fixer fix --dry-run -vvv --ansi
+
+            -   name: Run static analysis
+                run: vendor-bin/phpstan/vendor/bin/phpstan analyze src/ --level max --memory-limit=-1 --ansi
+
+    unit-tests:
+        name: Unit tests
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v3
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: 8.1
+                    extensions: bcmath, dom, fileinfo, filter, gd, hash, intl, json, mbstring, mysqli, pcre, pdo_mysql, zip, zlib
+                    coverage: none
+
+                env:
+                    COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            -   name: Install the dependencies
+                run: composer install --no-interaction --no-progress
+
+            -   name: Run unit tests
+                run: vendor-bin/phpunit/vendor/bin/phpunit --colors=always
+
+    check-composer-requirements:
+        name: Check Composer requirements
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v3
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: 8.1
+                    extensions: bcmath, dom, fileinfo, filter, gd, hash, intl, json, mbstring, mysqli, pcre, pdo_mysql, zip, zlib
+                    coverage: none
+
+                env:
+                    COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            -   name: Install the dependencies
+                run: composer install --no-interaction --no-progress
+
+            -   name: Check the dependencies
+                run: tools/require-checker/vendor/bin/composer-require-checker check --config-file=tools/require-checker/config.json composer.json --ansi
+
+    security-check:
+        name: PHP Security Check
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v3
+
+            -   name: Setup cache
+                uses: actions/cache@v2
+                id: cache-db
+                with:
+                    path: ~/.symfony/cache
+                    key: db
+
+            -   name: Run security check
+                uses: symfonycorp/security-checker-action@v3

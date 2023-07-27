@@ -1,0 +1,22 @@
+:root {
+    --body-bg: #cfcfd3;
+    --main-bg: #eaeaec;
+}
+
+html[data-color-scheme="dark"] {
+
+}
+
+body {
+    background: var(--body-bg) !important;
+}
+
+#main {
+    background: var(--main-bg) !important;
+}
+
+#container,
+#header {
+    max-width:1440px;
+    margin:0 auto;
+}

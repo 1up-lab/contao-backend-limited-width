@@ -1,5 +1,5 @@
 includes:
-    - tools/phpstan/vendor/phpstan/phpstan-symfony/extension.neon
+    - vendor-bin/phpstan/vendor/phpstan/phpstan-symfony/extension.neon
 
 parameters:
     bootstrapFiles:
@@ -8,5 +8,6 @@ parameters:
     checkMissingIterableValueType: false
     reportUnmatchedIgnoredErrors: false
     universalObjectCratesClasses:
+        - Contao\BackendUser
 
     ignoreErrors:

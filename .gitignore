@@ -1,16 +1,6 @@
-# OS
-.DS_Store
-Thumbs.db
-
-# IDEs
-.buildpath
-.project
-.settings/
-.build/
 .idea/
-
-# Composer
-vendor/
-/vendor-bin/**/vendor
+/vendor/
+/vendor-bin/*/vendor
+/vendor-bin/*/composer.lock
+.phpunit.result.cache
 composer.lock
-composer.phar

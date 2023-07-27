@@ -3,7 +3,7 @@
 $finder = PhpCsFixer\Finder::create()
     ->exclude('Resources')
     ->exclude('Fixtures')
-    ->in([__DIR__ . '/src', __DIR__ . '/contao', __DIR__ . '/config'])
+    ->in([__DIR__ . '/config', __DIR__ . '/src', __DIR__ . '/tests'])
 ;
 
 $config = new PhpCsFixer\Config();
