@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 Contao\CoreBundle\DataContainer\PaletteManipulator::create()
-    ->addField('fullscreen', 'backendTheme', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_APPEND)
+    ->addField('limitedWidth', 'backendTheme', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_APPEND)
     ->applyToPalette('default', 'tl_user')
     ->applyToPalette('login', 'tl_user')
     ->applyToPalette('admin', 'tl_user')
@@ -15,7 +15,7 @@ Contao\CoreBundle\DataContainer\PaletteManipulator::create()
 $GLOBALS['TL_DCA']['tl_user']['fields'] = [
     ...$GLOBALS['TL_DCA']['tl_user']['fields'],
     ...[
-        'fullscreen' => [
+        'limitedWidth' => [
             'exclude' => true,
             'inputType' => 'checkbox',
             'default' => false,
