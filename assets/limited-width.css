@@ -8,11 +8,11 @@ html[data-color-scheme="dark"] {
 }
 
 body {
-    background: var(--body-bg) !important;
+    background-color: var(--body-bg) !important;
 }
 
 #main {
-    background: var(--main-bg) !important;
+    background-color: var(--main-bg) !important;
 }
 
 #container,
