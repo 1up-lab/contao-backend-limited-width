@@ -20,3 +20,9 @@ body {
     max-width: 1440px;
     margin: 0 auto;
 }
+
+@media (min-width: 992px) {
+    .backend-search:not(.search--hidden) .backend-search_inner {
+        width: min(calc(100% - 235px), 1220px);
+    }
+}
