@@ -32,6 +32,9 @@
         "bamarni/composer-bin-plugin": "^1.4",
         "contao/manager-plugin": "^2.0"
     },
+    "conflict": {
+        "contao/core-bundle": ">=5.7"
+    },
     "extra": {
         "bamarni-bin": {
             "bin-links": false
